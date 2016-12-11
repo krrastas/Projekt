@@ -105,11 +105,12 @@ public class Projekt extends Application {
         int y = root.getRowIndex(jupp);
         int x = root.getColumnIndex(jupp);
         System.out.println(jupp);
-        if ((x + 1 == valgex && y == valgey) ||
-                (x == valgex && y + 1 == valgey)){
+        if ((x + 1 == valgex && y == valgey) || //kui valge on paremal
+                (x == valgex && y + 1 == valgey) || //kui valge on all
+                    (x - 1 == valgex && y == valgey) || //kui valge on vasakul
+                        (x == valgex && y - 1 == valgey) //kui valge on üleval){
             System.out.println("valge on kõrval");
             root.getChildren().remove(jupp);
-            root.getChildren().remove(valgex*valgey);
             root.add(jupp, valgex, valgey);
             Rectangle rect = new Rectangle(100, 100);
             rect.setOpacity(0);
