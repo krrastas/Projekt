@@ -2,6 +2,7 @@
  * Created by Kristina on 18.11.2016.
  */
 import javafx.application.Application;
+import javafx.collections.transformation.SortedList;
 import javafx.event.EventType;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
@@ -27,9 +28,10 @@ import java.util.Collections;
 
 public class Projekt extends Application {
     ArrayList<ImageView> jupid = new ArrayList();
+
+
     int valgex = 2;
     int valgey = 2;
-
     GridPane root = new GridPane();
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -60,7 +62,7 @@ public class Projekt extends Application {
 
         System.out.println(jupid);
 
-        root.setOnMouseClicked(event -> {
+        root.setOnMouseClicked(event -> {  //klikkides vahetab nuppe
             Node jupp = (Node)(event.getTarget());
             swap(jupp);
         });
@@ -69,10 +71,9 @@ public class Projekt extends Application {
 
 
 
-        ImageView viimane = jupid.remove(8);
-
+       ImageView viimane = jupid.remove(8); //kustutab viimase jupi
         Collections.shuffle(jupid);
-        jupid.add(null);
+        jupid.add(null);  //paneb tühja asemele
 
         int z =0;
         for (int i = 0; i < 3; i++) {
@@ -88,8 +89,8 @@ public class Projekt extends Application {
             }
 
         }
-
-        root.getChildren().get(8).setOpacity(0);
+        System.out.println(jupid);
+       root.getChildren().get(8).setOpacity(0);
         //System.out.println(jupid);
         //root.getChildren().add(imageView);
         Scene piltStseen = new Scene(root, 300, 300);
@@ -108,8 +109,8 @@ public class Projekt extends Application {
         if ((x + 1 == valgex && y == valgey) || //kui valge on paremal
                 (x == valgex && y + 1 == valgey) || //kui valge on all
                     (x - 1 == valgex && y == valgey) || //kui valge on vasakul
-                        (x == valgex && y - 1 == valgey) //kui valge on üleval){
-            System.out.println("valge on kõrval");
+                        (x == valgex && y - 1 == valgey)){
+            //System.out.println("valge on kõrval");
             root.getChildren().remove(jupp);
             root.add(jupp, valgex, valgey);
             Rectangle rect = new Rectangle(100, 100);
@@ -118,6 +119,6 @@ public class Projekt extends Application {
             valgex = x;
             valgey = y;
         }
-    }
 
+    }
 }
