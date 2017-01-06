@@ -38,16 +38,7 @@ public class swap {
             Projekt.valgey = y;
             Projekt.asukoht2 = Projekt.asukoht1; //muudab valge asukohaks pildi eelmise asukoha
 
-            if (jupid.equals(korras)) {
-
-                Image image1 = new Image("Pilt/Pingviinid.jpg");
-                ImageView pic = new ImageView();
-                pic.setImage(image1);
-                VBox vbox2 = new VBox();
-                vbox2.getChildren().add(pic);
-                Scene korraspilt = new Scene(vbox2, 300, 300);
-                puzzle.setScene(korraspilt);
-            }
+            new Kontroll(jupid, korras, puzzle);
         }
     }
 }
