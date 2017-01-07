@@ -14,7 +14,8 @@ import java.util.ArrayList;
  */
 public class swap {
     public swap(Node jupp, GridPane grid, ImageView pilt1, ArrayList<ImageView> jupid, ArrayList<ImageView> korras, Stage puzzle) {
-
+        int asukoht1;
+        int asukoht2;
         int y = grid.getRowIndex(jupp);
         int x = grid.getColumnIndex(jupp);
         System.out.println(jupp);
@@ -24,19 +25,18 @@ public class swap {
                 (x == Projekt.valgex && y - 1 == Projekt.valgey)) {
             //System.out.println("valge on kõrval");
 
-            Projekt.asukoht2 = jupid.indexOf(null);
-            Projekt.asukoht1 = jupid.indexOf(pilt1);
-            jupid.set(Projekt.asukoht2, pilt1);
-            jupid.set(Projekt.asukoht1, null);
+            asukoht2 = jupid.indexOf(null); //tühja jupi indeks ArrayListis
+            asukoht1 = jupid.indexOf(pilt1); //klikitud jupi indeks ArrayListis
+            jupid.set(asukoht2, pilt1); //paneb tühja indeksi asemele jupi indeksi
+            jupid.set(asukoht1, null); //teeb tühjaks jupi endise asukoha
 
-            grid.getChildren().remove(jupp);
-            grid.add(jupp, Projekt.valgex, Projekt.valgey);
+            grid.getChildren().remove(jupp); //kustutab jupi ära sealt, kus klikiti
+            grid.add(jupp, Projekt.valgex, Projekt.valgey); //paneb jupi valge positsioonile
             Rectangle rect = new Rectangle(100, 100);
             rect.setOpacity(0);
-            grid.add(rect, x, y);
+            grid.add(rect, x, y); //paneb läbipaistva ruudu valge kohale
             Projekt.valgex = x;
             Projekt.valgey = y;
-            Projekt.asukoht2 = Projekt.asukoht1; //muudab valge asukohaks pildi eelmise asukoha
 
             new Kontroll(jupid, korras, puzzle);
         }

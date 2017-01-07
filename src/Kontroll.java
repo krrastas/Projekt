@@ -14,8 +14,8 @@ public class Kontroll {
 
         if (jupid.equals(korras)) {
             Image image1 = new Image("Pilt/Pingviinid.jpg");
-            ImageView pic = new ImageView();
-            pic.setImage(image1);
+            ImageView pic = new ImageView(); //et ta näitaks pilti
+            pic.setImage(image1); //et ta näitaks pingviinide pilti
             VBox vbox2 = new VBox();
             vbox2.getChildren().add(pic);
             Scene korraspilt = new Scene(vbox2, 300, 300);

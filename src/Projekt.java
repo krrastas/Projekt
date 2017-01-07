@@ -23,8 +23,7 @@ public class Projekt extends Application {
 
     Stage puzzle = new Stage();
     ImageView pilt1;
-    public static int asukoht1;
-    public static int asukoht2;
+
 
     public static int valgex = 2;
     public static int valgey = 2;
@@ -32,6 +31,8 @@ public class Projekt extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+
+        //Algusstseeni loomine
         VBox vbox = new VBox();
         Scene login = new Scene(vbox, 300,300);
         puzzle.setScene(login);
@@ -39,15 +40,15 @@ public class Projekt extends Application {
         Label pealkiri = new Label("Puzzle mäng");
         Button submitButton = new Button("Alusta");
         vbox.getChildren().addAll(pealkiri, submitButton);
-        vbox.setAlignment(Pos.CENTER);
+        vbox.setAlignment(Pos.CENTER); //nuppude asetuse sättimine
         vbox.setSpacing(5);
 
 
-        for (int i = 0; i < 3 ; i++) {
+        for (int i = 0; i < 3 ; i++) { //3 rida, 3 veergu
             for (int j = 0; j < 3 ; j++) {
                 Image image = new Image("Pilt/Pingviinid.jpg" );
-                PixelReader reader = image.getPixelReader();
-                WritableImage newImage = new WritableImage(reader, j*100, i*100, 100, 100);
+                PixelReader reader = image.getPixelReader(); //pilti loetakse pikslite põhjal
+                WritableImage newImage = new WritableImage(reader, j*100, i*100, 100, 100); //pikslite järgi veergude ja ridade asukoht, samm 100
                 ImageView piltobjekt = new ImageView();
                 piltobjekt.setImage(newImage);
                 jupid.add(piltobjekt);
@@ -61,13 +62,13 @@ public class Projekt extends Application {
 
         grid.setOnMouseClicked(event -> {  //klikkides vahetab nuppe
             Node jupp = (Node)(event.getTarget());
-            pilt1 = (ImageView)(event.getTarget());
+            pilt1 = (ImageView)(event.getTarget());  //jupp, millele klikitakse
             new swap(jupp, grid, pilt1, jupid, korras, puzzle);
         });
 
 
        ImageView viimane = jupid.remove(8); //kustutab viimase jupi
-        Collections.shuffle(jupid);
+        Collections.shuffle(jupid); //segab jupid
         jupid.add(null);  //paneb tühja asemele
         int z =0;
         for (int i = 0; i < 3; i++) {
@@ -83,10 +84,8 @@ public class Projekt extends Application {
             }
 
         }
-        System.out.println(jupid);
+
        grid.getChildren().get(8).setOpacity(0);
-        //System.out.println(jupid);
-        //root.getChildren().add(imageView);
         Scene piltStseen = new Scene(grid, 300, 300);
 
             submitButton.setOnAction(event -> {
