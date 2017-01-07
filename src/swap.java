@@ -27,7 +27,7 @@ public class swap {
 
             asukoht2 = jupid.indexOf(null); //tühja jupi indeks ArrayListis
             asukoht1 = jupid.indexOf(pilt1); //klikitud jupi indeks ArrayListis
-            jupid.set(asukoht2, pilt1); //paneb tühja indeksi asemele jupi indeksi
+            jupid.set(asukoht2, pilt1); //paneb tühja asemele jupi
             jupid.set(asukoht1, null); //teeb tühjaks jupi endise asukoha
 
             grid.getChildren().remove(jupp); //kustutab jupi ära sealt, kus klikiti
